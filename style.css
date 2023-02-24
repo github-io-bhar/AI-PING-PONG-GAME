@@ -7,6 +7,7 @@ body{
 }
 .heading h1{
     display: inline;
+    font-size: 27px;
 }
 .heading button{
     float: right;
@@ -14,4 +15,22 @@ body{
 }
 canvas{
     margin-bottom: 10px;
+}
+.button{
+    box-shadow: 5px 5px 5px black;
+}
+h4{
+    background-color: #F5F5F5;
+    line-height: 2;
+    margin: 0px;
+}
+.modal-dialog{
+    width: 60%;
+}
+.modal-body{
+    text-align: left;
+    font-size: 30px;
+}
+.modal-title{
+    font-size: 50px;
 }

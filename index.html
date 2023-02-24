@@ -13,16 +13,46 @@
     </head>
     <body background="background.webp">
         <center>
-            <div class="btn btn-primary heading">
+            <div class="btn btn-danger heading">
                 <h1>AI PING PONG GAME</h1>
-                <button class="btn btn-primary" data-toggle="modal" data-target="#myModal"> Instructions </button>
+                <button class="btn btn-danger" data-toggle="modal" data-target="#myModal"> Instructions </button>
             </div>
             <br><br>
-            <button class="btn btn-success" onclick="startGame();" id="start"> Play Game </button>
+            <button class="btn btn-success button" onclick="startGame();" id="start"> Play Game </button>
             <br>
             <h3 id="status" class="btn btn-warning"></h3>
             <br><br>
             <div id="canvas"></div>
+            <button class="btn btn-warning button" onclick="restart();"> Restart Game </button>
+            <br><br>
+            <h4>Created By: Abhyudaya Swarnim Bhargav</h4>
+            <div id="myModal" class="modal fade ">
+                <div class="modal-dialog" >
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button class="close" data-dismiss="modal">&times;</button>
+                            <h3 class="modal-title">Instructions</h#>
+                        </div>
+                        <div class="modal-body">
+                            <ol>
+                                <li>First keep your laptop screen straight.</li>
+                                <br>
+                                <li>Move yourself approximately 3-4 feet away from the laptop.</li>
+                                <br>
+                                <li>Move your right wrist in an ascending and decending manner, a red dot should appear on your right wrist.</li>
+                                <br>
+                                <li>Now press the play button, and again move yourself 3-4 feet away from laptop.</li>
+                                <br>
+                                <li>The red paddel is your paddel, that will move as per the movement of your right wrist.</li>
+                                <br>
+                                <li>If you move your right wrist up, the red paddle will go up.</li>
+                                <br>
+                                <li>If you move your right wrist down, the red paddle will go down.</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </center>
         <script src="main.js"></script>
     </body>
