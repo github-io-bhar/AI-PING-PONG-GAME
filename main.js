@@ -10,6 +10,7 @@ var pcscore =0;
 var rightWristX = 0;
 var rightWristY = 0;
 var rightWristScore = 0;
+var game_status = "";
 //ball x and y and speedx speed y and radius
 var ball = {
   x:350/2,
@@ -38,20 +39,26 @@ function gotResults(results){
     console.log("Right Wrist Y = " + rightWristY + ", Right Wrist X = " + rightWristX + ", Score = " + rightWristScore);
   }
 }
+function startGame(){
+  game_status = "start";
+  document.getElementById("status").innerHTML = "Game Is Loaded";
+}
 function draw(){
+  if(game_status == "start"){
+    background(0); 
+    image(video, 0, 0, 700, 600);
+    fill("black");
+    stroke("black");
+    rect(680,0,20,700);
+    fill("black");
+    stroke("black");
+    rect(0,0,20,700);
+  }
   if(rightWristScore > 0.2){
     fill("#00FFBB");
     stroke("#B0FF00");
     circle(rightWristX, rightWristY, 25);
   }
-  background(0); 
-  image(video, 0, 0, 700, 600);
-  fill("black");
-  stroke("black");
-  rect(680,0,20,700);
-  fill("black");
-  stroke("black");
-  rect(0,0,20,700);
   //funtion paddleInCanvas call 
   paddleInCanvas();
   //left paddle
