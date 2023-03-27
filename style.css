@@ -42,6 +42,10 @@ canvas{
     margin-top: 50px;
     animation-iteration-count: infinite;
 }
+video{
+    transform: rotateY(180deg);
+    -webkit-transform: rotateY(180deg);
+}
 @keyframes animation{
     from{box-shadow: 1px 1px 38px black;}
     to{box-shadow: 1px 1px 38px gray;}
