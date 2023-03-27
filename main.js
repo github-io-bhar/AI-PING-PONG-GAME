@@ -11,7 +11,7 @@ var rightWristX = 0;
 var rightWristY = 0;
 var rightWristScore = 0;
 var game_status = "";
-var touch, miss;
+var touch, miss, gameover, bounce;
 var canvas;
 var poseNet;
 var video;
@@ -26,6 +26,8 @@ var ball = {
 function preload(){
   touch = loadSound("ball_touch_paddel.wav");
   miss = loadSound("missed.wav");
+  gameover = loadSound("gameover.wav");
+  bounce = loadSound("bounce.wav");
 }
 function setup(){
   canvas =  createCanvas(700,600);
@@ -122,14 +124,13 @@ function drawScore(){
 }
 //very important function of this game
 function move(){
-  fill(50,350,0);
-  stroke(255,0,0);
+  fill(50, 350, 0);
+  stroke(255, 0, 0);
   strokeWeight(0.5);
-  ellipse(ball.x,ball.y,ball.r,20)
+  ellipse(ball.x, ball.y, ball.r, 20);
   ball.x = ball.x + ball.dx;
   ball.y = ball.y + ball.dy;
-  if(ball.x+ball.r>width-ball.r/2){
-    miss.play();
+  if(ball.x + ball.r > width - ball.r/2){
     ball.dx =- ball.dx-0.5;       
   }
   if(ball.x-2.5 * ball.r/2 < 0 && game_status == "start"){
@@ -138,6 +139,7 @@ function move(){
       ball.dx =- ball.dx+0.5;
       playerscore++;
     }else{
+      miss.play();
       pcscore++;
       reset();
       navigator.vibrate(100);
@@ -145,6 +147,7 @@ function move(){
   }
   //☹☹
   if(pcscore == 5 && game_status == "start"){
+    gameover.play();
     fill("#FFA500");
     stroke(0);
     rect(0, 0, width, height-1);
@@ -160,8 +163,9 @@ function move(){
     pcscore = 0;
   }
   if(ball.y + ball.r > height || ball.y - ball.r < 0 && game_status == "start"){
-      ball.dy =- ball.dy;
-   }   
+    bounce.play();
+    ball.dy =- ball.dy;
+  }   
 }
 //width height of canvas speed of ball 
 function models(){
