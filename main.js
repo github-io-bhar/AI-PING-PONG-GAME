@@ -1,20 +1,14 @@
 /*created by abhyudaya swarnim bhargav*/
-var paddle2 =10,paddle1=10;
-var paddle1X = 10,paddle1Height = 110;
-var paddle2Y = 685,paddle2Height = 70;
+var paddle2 = 10, paddle1 = 10;
+var paddle1X = 10, paddle1Height = 110;
+var paddle2Y = 685, paddle2Height = 70;
 var score1 = 0, score2 =0;
 var paddle1Y;
-var  playerscore =0;
-var audio1;
-var pcscore =0;
-var rightWristX = 0;
-var rightWristY = 0;
-var rightWristScore = 0;
+var playerscore = 0, pcscore = 0;
+var rightWristX = 0, rightWristY = 0, rightWristScore = 0;
 var game_status = "";
-var touch, miss, gameover, bounce;
-var canvas;
-var poseNet;
-var video;
+var playertouch, pctouch, playermiss, gameover;
+var canvas, video, poseNet;
 //ball x and y and speedx speed y and radius
 var ball = {
   x:350/2,
@@ -24,10 +18,10 @@ var ball = {
   dy:3
 }
 function preload(){
-  touch = loadSound("ball_touch_paddel.wav");
-  miss = loadSound("missed.wav");
+  playertouch = loadSound("playertouch.wav");
+  pctouch = loadSound("pctouch.wav");
+  playermiss = loadSound("playermiss.wav");
   gameover = loadSound("gameover.wav");
-  bounce = loadSound("bounce.wav");
 }
 function setup(){
   canvas =  createCanvas(700,600);
@@ -131,15 +125,16 @@ function move(){
   ball.x = ball.x + ball.dx;
   ball.y = ball.y + ball.dy;
   if(ball.x + ball.r > width - ball.r/2){
+    pctouch.play();
     ball.dx =- ball.dx-0.5;       
   }
   if(ball.x-2.5 * ball.r/2 < 0 && game_status == "start"){
     if(ball.y >= paddle1Y && ball.y <= paddle1Y + paddle1Height){
-      touch.play();
+      playertouch.play();
       ball.dx =- ball.dx+0.5;
       playerscore++;
     }else{
-      miss.play();
+      playermiss.play();
       pcscore++;
       reset();
       navigator.vibrate(100);
@@ -163,7 +158,6 @@ function move(){
     pcscore = 0;
   }
   if(ball.y + ball.r > height || ball.y - ball.r < 0 && game_status == "start"){
-    bounce.play();
     ball.dy =- ball.dy;
   }   
 }
